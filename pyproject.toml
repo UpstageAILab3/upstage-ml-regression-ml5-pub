@@ -18,6 +18,10 @@ tqdm = "^4.66.1"
 eli5 = "^0.13.0"
 nbconvert = "^7.16.4"
 jupyter = "^1.0.0"
+xgboost = "^2.1.0"
+lightgbm = "^4.4.0"
+catboost = "^1.2.5"
+category-encoders = "^2.6.3"
 
 [build-system]
 requires = ["poetry-core"]
