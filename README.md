@@ -33,7 +33,8 @@
 
 ### Dataset overview
 
-- _Explain using data_
+- train: 
+- test: 2023.7~2023.9
 
 ### EDA
 
