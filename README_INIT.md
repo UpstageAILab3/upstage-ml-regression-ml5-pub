@@ -57,8 +57,8 @@ fi
 
 
 chmod +x jupyter_to_python.sh
-poetry run ./jupyter_to_python.sh baseline_code.ipynb
-poetry run python baseline_code.py
+poetry run ./jupyter_to_python.sh {주피터 파일명}.ipynb
+poetry run python {만들어진 파이썬 파일}.py
 
 
 
