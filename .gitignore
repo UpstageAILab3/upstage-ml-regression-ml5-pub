@@ -3,6 +3,7 @@ poetry.lock
 ex*
 catboost_info
 *.pkl
+server_backup_final
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,python,vim,visualstudiocode,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,python,vim,visualstudiocode,jupyternotebooks
