@@ -1,75 +1,83 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/D1pZhJxu)
-# Title (Please modify the title)
+# 🏠 부동산 실거래가 예측 대회
 
-## Team
+## 개요
 
-| ![박패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![이패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![최패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![김패캠](https://avatars.githubusercontent.com/u/156163982?v=4) | ![오패캠](https://avatars.githubusercontent.com/u/156163982?v=4) |
-| :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------: | :--------------------------------------------------------------: |
-|            [박패캠](https://github.com/UpstageAILab)             |            [이패캠](https://github.com/UpstageAILab)             |            [최패캠](https://github.com/UpstageAILab)             |            [김패캠](https://github.com/UpstageAILab)             |            [오패캠](https://github.com/UpstageAILab)             |
-|                            팀장, 담당 역할                             |                            담당 역할                             |                            담당 역할                             |                            담당 역할                             |                            담당 역할                             |
+> - kimkihong / helpotcreator@gmail.com / Upstage AI Lab 3기
+> - 2024.07.16.화 ~ 2024.07.19.금 19:00
 
-## 1. Competiton Info
+## 파일 소개
 
-### Overview
+- kkh-data-test.ipynb: test 데이터 전처리
+- kkh-data-train.ipynb: train 데이터 전처리
+- kkh-eda.ipynb: EDA
+- kkh-model.ipynb: 학습, 평가, 최종테스트
+- pyproject.toml: 프로젝트 패키지 관리를 위한 poetry 설정 파일
+- jupyter_to_python.sh: 주피터 파일을 파이썬 파일로 변환하는 리눅스 스크립트
+- font/: 폰트 파일
 
-- _Write competition information_
+## 우분투 세팅
 
-### Timeline
+- apt-get update
+- mkdir /kkh
+- cd /kkh
 
-- ex) January 10, 2024 - Start Date
-- ex) February 10, 2024 - Final submission deadline
+## 우분투에 git 세팅
 
-### Evaluation
+- apt install -y git
+- git --version
+- git config --global user.email "helpotcreator@gmail.com"
+- git config --global user.name "helpotcreator"
+- git clone https://{개인 토큰}@github.com/UpstageAILab3/upstage-ml-regression-ml5.git
+- mv upstage-ml-regression-ml5 helpotcreator
+- cd helpotcreator
+- git remote -v
+- git checkout -b kimkihong origin/kimkihong
+- git branch -a
 
-- _Write how to evaluate model_
+## 우분투에 poetry 세팅
 
-## 2. Components
+- pip install --upgrade pip
+- pip install poetry
+- poetry -V
+- poetry init
+- pyproject.toml 파일 수정
+- poetry install
+- poetry add jupyter nbconvert
 
-### Directory
+## jupyter_to_python.sh 파일 작성
 
-- _Insert your directory structure_
+```bash
+#!/bin/bash
 
-## 3. Data descrption
+# 주피터 노트북 파일명을 인자로 받음
+NOTEBOOK_FILE="$1"
 
-### Dataset overview
+# 파일명이 주어지지 않으면 에러 메시지를 출력하고 종료
+if [ -z "$NOTEBOOK_FILE" ]; then
+    echo "Usage: $0 <notebook-file>"
+    exit 1
+fi
 
-- _Explain using data_
+# 주어진 파일이 .ipynb 확장자를 가지고 있는지 확인
+if [[ "$NOTEBOOK_FILE" != *.ipynb ]]; then
+    echo "Error: The input file must have a .ipynb extension"
+    exit 1
+fi
 
-### EDA
+# jupyter nbconvert 명령어를 사용하여 노트북 파일을 Python 스크립트로 변환
+python -m jupyter nbconvert --to script "$NOTEBOOK_FILE"
 
-- _Describe your EDA process and step-by-step conclusion_
+# 변환 결과 확인
+if [ $? -eq 0 ]; then
+    echo "Conversion successful: ${NOTEBOOK_FILE%.ipynb}.py"
+else
+    echo "Conversion failed"
+    exit 1
+fi
+```
 
-### Feature engineering
+## jupyter_to_python.sh 파일 세팅
 
-- _Describe feature engineering process_
-
-## 4. Modeling
-
-### Model descrition
-
-- _Write model information and why your select this model_
-
-### Modeling Process
-
-- _Write model train and test process with capture_
-
-## 5. Result
-
-### Leader Board
-
-- _Insert Leader Board Capture_
-- _Write rank and score_
-
-### Presentation
-
-- _Insert your presentaion file(pdf) link_
-
-## etc
-
-### Meeting Log
-
-- _Insert your meeting log link like Notion or Google Docs_
-
-### Reference
-
-- _Insert related reference_
+- chmod +x jupyter_to_python.sh
+- poetry run ./jupyter_to_python.sh {주피터 파일명}.ipynb
+- poetry run python {만들어진 파이썬 파일}.py
